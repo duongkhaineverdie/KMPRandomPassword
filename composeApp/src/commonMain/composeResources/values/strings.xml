@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Random Password</string>
+    <string name="copied">Copied!</string>
+    <string name="save_password">Save passwords</string>
+    <string name="empty_list">Empty List</string>
+    <string name="lower_text_label">Lower Text</string>
+    <string name="upper_text_label">Upper Text</string>
+    <string name="special_char">Special Char</string>
+    <string name="number_label">Number</string>
+    <string name="password_length">Password length</string>
+    <string name="input_error_message"><![CDATA[Input 6 -> 16]]></string>
+    <string name="generate_password_title_button">Generate Password</string>
+
+    <string name="no_data_available">No data available</string>
+</resources>
