@@ -10,14 +10,8 @@ import io.kamel.core.utils.File
 import kotlinx.coroutines.CoroutineScope
 
 fun dataStorePreferences(
-    context: Context,
-    corruptionHandler: ReplaceFileCorruptionHandler<Preferences>?,
-    coroutineScope: CoroutineScope,
-    migrations: List<DataMigration<Preferences>>,
+    context: Context
 ): DataStore<Preferences> = createDataStoreWithDefaults(
-    corruptionHandler = corruptionHandler,
-    migrations = migrations,
-    coroutineScope = coroutineScope,
     path = {
         File(context.filesDir, "datastore/$SETTINGS_PREFERENCES").path
     }

@@ -13,4 +13,16 @@
     <string name="generate_password_title_button">Generate Password</string>
 
     <string name="no_data_available">No data available</string>
+
+    <string name="home_tab">Home</string>
+    <string name="list_tab">List</string>
+    <string name="save_tab">Saved</string>
+
+    <string name="saved_title_dialog_delete">Notification!</string>
+    <string name="saved_message_dialog_delete">Password selected:</string>
+    <string name="saved_cancel_dialog_delete">Cancel</string>
+    <string name="saved_remove_dialog_delete">Remove</string>
+    <string name="home_screen_message_dialog_delete">At least one choice</string>
+    <string name="home_screen_ok_dialog">Ok</string>
+    <string name="saved">Saved</string>
 </resources>

@@ -32,6 +32,8 @@ kotlin {
                 implementation(libs.compose.ui.tooling.preview)
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.ktor.client.okhttp)
+                implementation(libs.koin.android)
+                implementation(libs.koin.androidx.compose)
             }
         }
         iosMain.dependencies {
@@ -51,13 +53,19 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.koin)
+            implementation(libs.voyager.tab.navigator)
 
             implementation(libs.kotlinx.datetime)
 
             implementation(libs.androidx.datastore.preferences)
             implementation (libs.gson)
-            implementation(compose.components.uiToolingPreview)
             api(libs.compose.webview.multiplatform)
+
+            implementation(libs.cupertino)
+            implementation(libs.cupertino.native)
+            implementation(libs.cupertino.adaptive)
+            implementation(libs.cupertino.decompose)
+            implementation(libs.cupertino.icons.extended)
         }
     }
 }

@@ -19,24 +19,6 @@ class RandomPasswordViewModel(
     private val _uiState = MutableStateFlow(RandomPasswordUiState())
     val uiState: StateFlow<RandomPasswordUiState> = _uiState.asStateFlow()
 
-    init {
-        getPasswords()
-    }
-
-    private fun getPasswords() {
-        screenModelScope.launch {
-            getPasswordsUseCase(Unit).collectLatest {
-                it.onSuccess { passwords ->
-                    _uiState.update { state ->
-                        state.copy(
-                            passwords = passwords.toMutableList()
-                        )
-                    }
-                }
-            }
-        }
-    }
-
     fun onValueChangeLength(value: String) {
         _uiState.update {
             it.copy(
@@ -45,48 +27,98 @@ class RandomPasswordViewModel(
         }
     }
 
+    init {
+        screenModelScope.launch {
+            getPasswordsUseCase(Unit).collectLatest {
+                it.onSuccess { passwords ->
+                    _uiState.update { state ->
+                        state.copy(
+                            passwords = passwords.toList()
+                        )
+                    }
+                }
+            }
+        }
+    }
+
     fun actionIncludeLowercase(boolean: Boolean) {
-        if (onOneIncludeSelected())
+        if (boolean) {
             _uiState.update {
                 it.copy(includeLowercase = true)
             }
-        else
-            _uiState.update {
-                it.copy(includeLowercase = boolean)
+        } else {
+            if (onOneIncludeSelected())
+                _uiState.update {
+                    it.copy(
+                        showDialogNotificationAtLeast = true
+                    )
+                }
+            else {
+                _uiState.update {
+                    it.copy(includeLowercase = false)
+                }
             }
+        }
     }
 
     fun actionIncludeUppercase(boolean: Boolean) {
-        if (onOneIncludeSelected())
+        if (boolean) {
             _uiState.update {
                 it.copy(includeUppercase = true)
             }
-        else
-            _uiState.update {
-                it.copy(includeUppercase = boolean)
+        } else {
+            if (onOneIncludeSelected())
+                _uiState.update {
+                    it.copy(
+                        showDialogNotificationAtLeast = true
+                    )
+                }
+            else {
+                _uiState.update {
+                    it.copy(includeUppercase = false)
+                }
             }
+        }
     }
 
     fun actionIncludeDigits(boolean: Boolean) {
-        if (onOneIncludeSelected())
+        if (boolean) {
             _uiState.update {
                 it.copy(includeDigits = true)
             }
-        else
-            _uiState.update {
-                it.copy(includeDigits = boolean)
+        } else {
+            if (onOneIncludeSelected())
+                _uiState.update {
+                    it.copy(
+                        showDialogNotificationAtLeast = true
+                    )
+                }
+            else {
+                _uiState.update {
+                    it.copy(includeDigits = false)
+                }
             }
+        }
     }
 
     fun actionIncludeSpecialChars(boolean: Boolean) {
-        if (onOneIncludeSelected())
+        if (boolean) {
             _uiState.update {
                 it.copy(includeSpecialChars = true)
             }
-        else
-            _uiState.update {
-                it.copy(includeSpecialChars = boolean)
+        } else {
+            if (onOneIncludeSelected())
+                _uiState.update {
+                    it.copy(
+                        showDialogNotificationAtLeast = true
+                    )
+                }
+            else {
+                _uiState.update {
+                    it.copy(includeSpecialChars = false)
+                }
             }
+        }
     }
 
     fun generatePassword() {
@@ -107,7 +139,11 @@ class RandomPasswordViewModel(
                     .joinToString("")
 
                 _uiState.update { state ->
-                    state.copy(passwordGenerated = generatedPassword, isErrorInput = false)
+                    state.copy(
+                        passwordGenerated = generatedPassword,
+                        isErrorInput = false,
+                        isSavedPassword = false
+                    )
                 }
             } else {
                 _uiState.update { state ->
@@ -132,14 +168,35 @@ class RandomPasswordViewModel(
     }
 
     fun savePassword(password: String) {
-        val oldPasswords = uiState.value.passwords
-        if (!oldPasswords.contains(password)) {
-            val newPasswords = oldPasswords + password
+        val passwords = uiState.value.passwords
+        if (!passwords.contains(password)) {
+            val newPasswords = passwords + password
             screenModelScope.launch {
                 savePasswordsUseCase(newPasswords.toSet()).onSuccess {
-                    getPasswords()
+                    _uiState.update { state ->
+                        state.copy(
+                            isSavedPassword = true,
+                            isShowSavedDialog = true,
+                        )
+                    }
                 }
             }
+        }
+    }
+
+    fun onDismissDialogAtLeast() {
+        _uiState.update {
+            it.copy(
+                showDialogNotificationAtLeast = false
+            )
+        }
+    }
+
+    fun onDismissSavedDialog() {
+        _uiState.update {
+            it.copy(
+                isShowSavedDialog = false
+            )
         }
     }
 }
@@ -152,5 +209,8 @@ data class RandomPasswordUiState(
     val includeSpecialChars: Boolean = true,
     val passwordGenerated: String = "",
     val isErrorInput: Boolean = false,
-    val passwords: MutableList<String> = arrayListOf()
+    val showDialogNotificationAtLeast: Boolean = false,
+    val isSavedPassword: Boolean = false,
+    val isShowSavedDialog: Boolean = false,
+    val passwords: List<String> = arrayListOf()
 )

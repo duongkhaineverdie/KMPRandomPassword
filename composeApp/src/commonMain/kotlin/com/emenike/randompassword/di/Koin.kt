@@ -5,6 +5,7 @@ import com.emenike.randompassword.domain.interactors.GetPasswordsUseCase
 import com.emenike.randompassword.domain.interactors.SavePasswordsUseCase
 import com.emenike.randompassword.domain.repository.RepositoryImpl
 import com.emenike.randompassword.screens.randompassword.RandomPasswordViewModel
+import com.emenike.randompassword.screens.savepassword.SavedPasswordViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -13,6 +14,7 @@ import org.koin.dsl.module
 
 val screenModelsModule = module {
     singleOf(::RandomPasswordViewModel)
+    singleOf(::SavedPasswordViewModel)
 }
 
 val repositoryModule = module {
@@ -34,7 +36,7 @@ expect val platformModule: Module
 fun initKoin() {
     startKoin {
         modules(
-            com.emenike.randompassword.di.platformModule,
+            platformModule,
             repositoryModule,
             useCaseModule,
             screenModelsModule,
