@@ -3,8 +3,9 @@ package com.emenike.randompassword.data.repository
 import com.emenike.randompassword.data.model.RemoteConfigs
 import kotlinx.coroutines.flow.Flow
 
-interface IRepository {
-    fun getPasswords(): Flow<Set<String>>
-    suspend fun savePasswords(passwords: Set<String>)
+interface RemoteConfigRepo {
+
+    fun initConfigs()
+
     fun getConfigs(): Flow<RemoteConfigs>
 }

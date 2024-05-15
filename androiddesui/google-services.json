@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1013200175503",
+    "project_id": "randompassword-4825e",
+    "storage_bucket": "randompassword-4825e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013200175503:android:b40216ee019ba4a8150bfa",
+        "android_client_info": {
+          "package_name": "com.emenike.randompassword"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK5ZhZmknKmYwLFLYfswOCBLHF2cfVVTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

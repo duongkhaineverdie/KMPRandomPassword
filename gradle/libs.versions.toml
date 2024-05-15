@@ -7,6 +7,9 @@ androidx-activityCompose = "1.9.0"
 composeWebviewMultiplatform = "1.9.2"
 cupertino = "0.1.0-alpha04"
 datastorePreferences = "1.1.1"
+firebaseBom = "33.0.0"
+firebaseCommon = "1.12.0"
+firebaseConfigVersion = "1.12.0"
 gson = "2.10.1"
 jetpack-compose-bom = "2024.05.00"
 compose-plugin = "1.6.1"
@@ -21,7 +24,9 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.7.0"
+lifecycleRuntimeKtx = "2.8.0"
+googleServicesVersion = "4.4.1"
+firebaseConfig = "22.0.0"
 
 [libraries]
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
@@ -35,6 +40,10 @@ cupertino-adaptive = { module = "io.github.alexzhirkevich:cupertino-adaptive", v
 cupertino-decompose = { module = "io.github.alexzhirkevich:cupertino-decompose", version.ref = "cupertino" }
 cupertino-icons-extended = { module = "io.github.alexzhirkevich:cupertino-icons-extended", version.ref = "cupertino" }
 cupertino-native = { module = "io.github.alexzhirkevich:cupertino-native", version.ref = "cupertino" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-common = { module = "dev.gitlive:firebase-common", version.ref = "firebaseCommon" }
+gitlive-firebase-config = { module = "dev.gitlive:firebase-config", version.ref = "firebaseConfigVersion" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
@@ -59,6 +68,7 @@ androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
@@ -66,3 +76,4 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleServicesVersion" }

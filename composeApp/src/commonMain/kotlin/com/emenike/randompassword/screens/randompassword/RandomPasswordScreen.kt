@@ -121,7 +121,8 @@ data object RandomPasswordScreen : HomeTab {
                 onDismissSavedDialog = homeViewModel::onDismissSavedDialog,
                 showDialogAtLeast = uiState.showDialogNotificationAtLeast,
                 isSaved = uiState.isSavedPassword,
-                isShowSaved = uiState.isShowSavedDialog
+                isShowSaved = uiState.isShowSavedDialog,
+                layoutVersion = uiState.layoutVersion,
             )
         }
     }
@@ -154,6 +155,7 @@ fun HomeScreen(
     showDialogAtLeast: Boolean = false,
     isSaved: Boolean = false,
     isShowSaved: Boolean = false,
+    layoutVersion: String?,
 ) {
     val localFocusManager = LocalFocusManager.current
     val titleActionDialogAtLeast = stringResource(Res.string.home_screen_ok_dialog).uppercase()
@@ -339,15 +341,17 @@ fun HomeScreen(
                         modifier = Modifier.size(24.dp)
                     )
                 }
-                AdaptiveButton(
-                    modifier = Modifier
-                        .fillMaxHeight(),
-                    onClick = { onClickCopy(generatedPassword) }) {
-                    CupertinoIcon(
-                        painter = painterResource(Res.drawable.img_copy),
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
+                if (layoutVersion == "v1"){
+                    AdaptiveButton(
+                        modifier = Modifier
+                            .fillMaxHeight(),
+                        onClick = { onClickCopy(generatedPassword) }) {
+                        CupertinoIcon(
+                            painter = painterResource(Res.drawable.img_copy),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
                 }
             }
         }

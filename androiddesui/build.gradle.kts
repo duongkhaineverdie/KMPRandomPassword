@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.googleServices)
 }
 
 android {
@@ -59,6 +60,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.config)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +68,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 }

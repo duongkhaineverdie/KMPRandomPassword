@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.googleServices)
 }
 
 kotlin {
@@ -66,6 +67,9 @@ kotlin {
             implementation(libs.cupertino.adaptive)
             implementation(libs.cupertino.decompose)
             implementation(libs.cupertino.icons.extended)
+
+            implementation(libs.gitlive.firebase.config)
+            implementation(libs.firebase.common)
         }
     }
 }

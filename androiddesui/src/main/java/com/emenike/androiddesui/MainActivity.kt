@@ -12,11 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.emenike.androiddesui.ui.theme.KMPRANDOMPASSWORDTheme
+import com.google.firebase.Firebase
+import com.google.firebase.initialize
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        Firebase.initialize(this)
         setContent {
             KMPRANDOMPASSWORDTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

@@ -3,6 +3,7 @@ package com.emenike.randompassword.screens.randompassword
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.emenike.randompassword.domain.interactors.GetPasswordsUseCase
+import com.emenike.randompassword.domain.interactors.GetRemoteConfigUseCase
 import com.emenike.randompassword.domain.interactors.SavePasswordsUseCase
 import com.emenike.randompassword.utils.Constants
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 class RandomPasswordViewModel(
     val getPasswordsUseCase: GetPasswordsUseCase,
     val savePasswordsUseCase: SavePasswordsUseCase,
+    val getRemoteConfigUseCase: GetRemoteConfigUseCase,
 ) : ScreenModel {
     private val _uiState = MutableStateFlow(RandomPasswordUiState())
     val uiState: StateFlow<RandomPasswordUiState> = _uiState.asStateFlow()
@@ -29,6 +31,15 @@ class RandomPasswordViewModel(
 
     init {
         screenModelScope.launch {
+            getRemoteConfigUseCase(Unit).collectLatest {
+                it.onSuccess { remoteConfig ->
+                    _uiState.update { state ->
+                        state.copy(
+                            layoutVersion = remoteConfig.layoutVersion
+                        )
+                    }
+                }
+            }
             getPasswordsUseCase(Unit).collectLatest {
                 it.onSuccess { passwords ->
                     _uiState.update { state ->
@@ -212,5 +223,6 @@ data class RandomPasswordUiState(
     val showDialogNotificationAtLeast: Boolean = false,
     val isSavedPassword: Boolean = false,
     val isShowSavedDialog: Boolean = false,
-    val passwords: List<String> = arrayListOf()
+    val passwords: List<String> = arrayListOf(),
+    val layoutVersion: String? = null,
 )
