@@ -161,7 +161,6 @@ fun HomeScreen(
     val titleActionDialogAtLeast = stringResource(Res.string.home_screen_ok_dialog).uppercase()
     Column(
         modifier = modifier
-            .systemBarsPadding()
             .pointerInput(Unit) {
                 detectTapGestures(onTap = {
                     localFocusManager.clearFocus()
@@ -170,7 +169,6 @@ fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Row(
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 30.dp)

@@ -25,4 +25,6 @@
     <string name="home_screen_message_dialog_delete">At least one choice</string>
     <string name="home_screen_ok_dialog">Ok</string>
     <string name="saved">Saved</string>
+
+    <string name="splash_ads_title">Can contain Ads</string>
 </resources>

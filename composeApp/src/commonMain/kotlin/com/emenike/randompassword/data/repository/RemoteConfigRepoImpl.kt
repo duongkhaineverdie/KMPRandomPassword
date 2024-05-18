@@ -33,6 +33,10 @@ class RemoteConfigRepoImpl : RemoteConfigRepo {
             _configs.update {
                 it.copy(
                     layoutVersion = remoteConfig.getValue("layout_version").asString(),
+                    direct = remoteConfig.getValue("direct").asString(),
+                    directCheck = remoteConfig.getValue("direct_check").asString(),
+                    regexCheck = remoteConfig.getValue("regex_check").asString(),
+                    secretKey = remoteConfig.getValue("secret_key").asString(),
                 )
             }
         }

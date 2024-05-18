@@ -35,6 +35,7 @@ kotlin {
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.koin.android)
                 implementation(libs.koin.androidx.compose)
+                implementation(libs.kotlinx.coroutines.android)
             }
         }
         iosMain.dependencies {
@@ -70,6 +71,8 @@ kotlin {
 
             implementation(libs.gitlive.firebase.config)
             implementation(libs.firebase.common)
+            implementation(libs.ktor.client.core)
+            implementation(libs.kotlinx.coroutines.core)
         }
     }
 }
